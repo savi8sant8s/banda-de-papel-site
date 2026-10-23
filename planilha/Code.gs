@@ -67,10 +67,14 @@ function gravaAvaliacao(p) {
   if (!pedido) return false;
 
   const nota = Math.min(5, Math.max(1, parseInt(p.nota, 10) || 5));
-  abaAvaliacoes().appendRow([
+  // appendRow não serve: as caixas de seleção contam como preenchidas e a linha iria pro fim da aba.
+  const aba = abaAvaliacoes();
+  const linha = aba.getRange("A:A").getValues().filter((l) => l[0] !== "").length + 1;
+  aba.getRange(linha, 1, 1, COLUNAS_AV.length).setValues([[
     new Date(), false, limpa(p.nome).slice(0, 60), email, nota, limpa(p.comentario).slice(0, 600),
     p.mostrar === "sim" ? "Sim" : "Não", limpa(p.idioma), pedido[5],
-  ]);
+  ]]);
+  aba.getRange(linha, 2).insertCheckboxes();
   return true;
 }
 
@@ -142,7 +146,6 @@ function abaAvaliacoes() {
   aba.appendRow(COLUNAS_AV);
   aba.setFrozenRows(1);
   aba.getRange(1, 1, 1, COLUNAS_AV.length).setFontWeight("bold");
-  aba.getRange("B2:B").insertCheckboxes();
   return aba;
 }
 
