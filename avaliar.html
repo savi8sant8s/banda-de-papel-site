@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avaliar o vídeo — Banda de Papel</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="wrap thanks">
+    <div class="paper tilt-r">
+      <h1>Como ficou o seu vídeo?</h1>
+      <p class="lead">Leva um minuto e ajuda muito quem está pensando em pedir.</p>
+      <form id="avaliacao-form" data-obrigado="avaliado.html">
+        <input type="hidden" name="tipo" value="avaliacao">
+        <input type="hidden" name="idioma" value="PT">
+        <input class="honey" type="text" name="site" tabindex="-1" autocomplete="off">
+
+        <label>E-mail do pedido <small>O mesmo que você usou no pedido.</small>
+          <input type="email" name="email" required>
+        </label>
+        <label>Nome que aparece no site <small>Pode ser só o primeiro nome ou o nome da banda.</small>
+          <input name="nome" maxlength="60" required>
+        </label>
+        <label>Nota
+          <select name="nota" required>
+            <option value="5">★★★★★ Amei</option>
+            <option value="4">★★★★ Gostei</option>
+            <option value="3">★★★ Ok</option>
+            <option value="2">★★ Podia ser melhor</option>
+            <option value="1">★ Não gostei</option>
+          </select>
+        </label>
+        <label>Comentário <small>O que achou? Pra quem foi o vídeo?</small>
+          <textarea name="comentario" maxlength="600" required></textarea>
+        </label>
+        <label class="check"><input type="checkbox" name="mostrar" value="sim" checked> Pode mostrar minha avaliação no site.</label>
+        <p class="form-erro" hidden></p>
+        <div><button class="btn" type="submit">Enviar avaliação</button></div>
+        <p class="after recaptcha">Protegido pelo reCAPTCHA do Google (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacidade</a> e <a href="https://policies.google.com/terms" target="_blank" rel="noopener">termos</a>).</p>
+      </form>
+    </div>
+  </main>
+  <script>
+    // O link mandado pro cliente pode vir com ?email=... pra já preencher
+    const e = new URLSearchParams(location.search).get("email");
+    if (e) document.querySelector("[name=email]").value = e;
+  </script>
+  <script src="pedido.js"></script>
+</body>
+</html>

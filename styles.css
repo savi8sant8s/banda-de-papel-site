@@ -157,6 +157,21 @@ input:focus, select:focus, textarea:focus { outline: 3px solid var(--yellow); ou
 button:disabled { opacity: .6; cursor: wait; }
 .after { color: var(--ink-soft); font-size: 15px; margin: 0; }
 
+/* avaliações */
+#avaliacoes { margin: 40px auto 48px; }
+.reviews { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; align-items: start; }
+.review { margin: 0; }
+.review:nth-child(odd) { transform: rotate(-.6deg); }
+.review:nth-child(even) { transform: rotate(.5deg); }
+.review .stars { color: var(--orange); font-size: 22px; letter-spacing: 2px; margin: 0 0 8px; }
+.review blockquote { margin: 0 0 12px; font-size: 18px; }
+.review figcaption { color: var(--ink-soft); font-size: 15px; font-weight: 600; }
+@media (max-width: 640px) { .review:nth-child(n) { transform: none; } }
+
+/* o selo flutuante do reCAPTCHA cobre o conteúdo no celular; o aviso fica no formulário */
+.grecaptcha-badge { visibility: hidden; }
+.recaptcha a { color: inherit; }
+
 /* FAQ */
 details { border-bottom: 1px solid #ffffff2a; padding: 14px 0; }
 summary { cursor: pointer; font-weight: 700; font-size: 19px; }
@@ -168,4 +183,5 @@ footer a { margin: 0 8px; }
 /* obrigado */
 .thanks { min-height: 70vh; display: grid; place-items: center; padding: 40px 0; }
 .thanks .paper { max-width: 560px; text-align: center; }
+.thanks form { text-align: left; margin-top: 8px; }
 .thanks img { width: 120px; border-radius: 50%; margin: 0 auto 18px; }

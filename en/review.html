@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Review your video — Paper Band</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <main class="wrap thanks">
+    <div class="paper tilt-r">
+      <h1>How did your video turn out?</h1>
+      <p class="lead">It takes a minute and really helps people who are thinking about ordering.</p>
+      <form id="avaliacao-form" data-obrigado="reviewed.html">
+        <input type="hidden" name="tipo" value="avaliacao">
+        <input type="hidden" name="idioma" value="EN">
+        <input class="honey" type="text" name="site" tabindex="-1" autocomplete="off">
+
+        <label>Order email <small>The one you used to place the order.</small>
+          <input type="email" name="email" required>
+        </label>
+        <label>Name shown on the site <small>Your first name or your band's name is fine.</small>
+          <input name="nome" maxlength="60" required>
+        </label>
+        <label>Rating
+          <select name="nota" required>
+            <option value="5">★★★★★ Loved it</option>
+            <option value="4">★★★★ Liked it</option>
+            <option value="3">★★★ Okay</option>
+            <option value="2">★★ Could be better</option>
+            <option value="1">★ Didn't like it</option>
+          </select>
+        </label>
+        <label>Comment <small>What did you think? Who was the video for?</small>
+          <textarea name="comentario" maxlength="600" required></textarea>
+        </label>
+        <label class="check"><input type="checkbox" name="mostrar" value="sim" checked> You can show my review on the site.</label>
+        <p class="form-erro" hidden></p>
+        <div><button class="btn" type="submit">Send review</button></div>
+        <p class="after recaptcha">Protected by Google reCAPTCHA (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">terms</a>).</p>
+      </form>
+    </div>
+  </main>
+  <script>
+    // The link sent to the client can carry ?email=... to prefill it
+    const e = new URLSearchParams(location.search).get("email");
+    if (e) document.querySelector("[name=email]").value = e;
+  </script>
+  <script src="../pedido.js"></script>
+</body>
+</html>
