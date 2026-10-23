@@ -1,5 +1,5 @@
 // URL do app da Web do Apps Script (Implantar → Nova implantação → App da Web). Ver planilha/README.md.
-const PLANILHA_URL = "";
+const PLANILHA_URL = "https://script.google.com/macros/s/AKfycbxsFphUFdnPd_gpKRMaN88hhRHTDJuUoC4TJroPdfjuWGnVP6FQzCkKpMz6ZDAAZ178tg/exec";
 
 const form = document.getElementById("pedido-form");
 const pt = document.documentElement.lang.startsWith("pt");
