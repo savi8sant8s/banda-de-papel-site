@@ -169,28 +169,24 @@
       <div class="paper tilt-r">
         <h2>Fazer um pedido</h2>
         <p class="lead">Ainda não é pagamento. Respondo em até 3 dias úteis.</p>
-        <!-- Troque contato@prancheta.cloud pelo e-mail que recebe os pedidos (FormSubmit pede confirmação no 1º envio). -->
-        <form action="https://formsubmit.co/contato@prancheta.cloud" method="POST">
-          <input type="hidden" name="_subject" value="Novo pedido — Banda de Papel">
-          <input type="hidden" name="_next" value="https://bandadepapel.cloud/obrigado.html">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="Idioma" value="PT">
-          <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off">
+        <form id="pedido-form" data-obrigado="obrigado.html">
+          <input type="hidden" name="idioma" value="PT">
+          <input class="honey" type="text" name="site" tabindex="-1" autocomplete="off">
 
           <div class="row">
-            <label>Seu nome <input name="Nome" required></label>
+            <label>Seu nome <input name="nome" required></label>
             <label>Seu e-mail <input type="email" name="email" required></label>
           </div>
           <div class="row">
             <label>Pacote
-              <select name="Pacote" required>
+              <select name="pacote" required>
                 <option value="Presente">Presente — R$ 120</option>
                 <option value="Artista">Artista — R$ 350</option>
                 <option value="Cenário exclusivo">Cenário exclusivo — a partir de R$ 900</option>
               </select>
             </label>
             <label>Cenário
-              <select name="Cenário">
+              <select name="cenario">
                 <option>Você escolhe pra mim</option>
                 <option>Caçamba do caminhão</option>
                 <option>Barco no rio</option>
@@ -214,23 +210,24 @@
             </label>
           </div>
           <label>Link da música <small>YouTube ou Spotify. No pacote Artista, se puder, mande também o áudio em boa qualidade (link do Drive).</small>
-            <input type="url" name="Música" placeholder="https://" required>
+            <input type="url" name="musica" placeholder="https://" required>
           </label>
           <div class="row">
             <label>Trecho <small>Início e fim, até 60 s. Ex.: 0:45 a 1:40</small>
-              <input name="Trecho" required>
+              <input name="trecho" required>
             </label>
             <label>Texto no bumbo <small>Até 2 linhas curtas</small>
-              <input name="Bumbo" placeholder="Ex.: Ana & Leo">
+              <input name="bumbo" placeholder="Ex.: Ana & Leo">
             </label>
           </div>
           <label>Precisa pra quando? <small>Data ou ocasião. Entrega padrão: até 10 dias úteis após o pagamento.</small>
-            <input name="Prazo">
+            <input name="prazo">
           </label>
           <label>Mais alguma coisa? <small>Ideia de cenário exclusivo, quem é quem, o que for útil.</small>
-            <textarea name="Observações"></textarea>
+            <textarea name="obs"></textarea>
           </label>
-          <label class="check"><input type="checkbox" name="Aceitou as regras" value="sim" required> Li e aceito as regras acima.</label>
+          <label class="check"><input type="checkbox" name="regras" value="sim" required> Li e aceito as regras acima.</label>
+          <p class="form-erro" hidden></p>
           <div><button class="btn" type="submit">Enviar pedido</button></div>
           <p class="after">Se eu aceitar, você recebe por e-mail o valor final e a forma de pagamento (Pix ou cartão por link).</p>
         </form>
@@ -251,5 +248,6 @@
     <p><a href="https://www.youtube.com/@abandadepapel" target="_blank" rel="noopener">YouTube</a> · <a href="#pedido">Fazer um pedido</a> · <a href="en/" hreflang="en">English</a></p>
     <p>Banda de Papel — tudo desenhado por código, nas horas vagas.</p>
   </footer>
+  <script src="pedido.js"></script>
 </body>
 </html>

@@ -153,6 +153,8 @@ input:focus, select:focus, textarea:focus { outline: 3px solid var(--yellow); ou
 .check { display: flex; gap: 10px; align-items: flex-start; font-weight: 500; }
 .check input { width: 20px; height: 20px; margin-top: 3px; flex: none; }
 .honey { display: none; }
+.form-erro { margin: 0; color: #b0321a; font-weight: 600; }
+button:disabled { opacity: .6; cursor: wait; }
 .after { color: var(--ink-soft); font-size: 15px; margin: 0; }
 
 /* FAQ */

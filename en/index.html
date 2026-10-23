@@ -169,28 +169,24 @@
       <div class="paper tilt-r">
         <h2>Place an order</h2>
         <p class="lead">No payment yet. I'll reply within 3 business days.</p>
-        <!-- Replace contato@prancheta.cloud with the inbox for orders (FormSubmit asks for confirmation on the first submit). -->
-        <form action="https://formsubmit.co/contato@prancheta.cloud" method="POST">
-          <input type="hidden" name="_subject" value="New order — Paper Band">
-          <input type="hidden" name="_next" value="https://bandadepapel.cloud/en/thanks.html">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="Language" value="EN">
-          <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off">
+        <form id="pedido-form" data-obrigado="thanks.html">
+          <input type="hidden" name="idioma" value="EN">
+          <input class="honey" type="text" name="site" tabindex="-1" autocomplete="off">
 
           <div class="row">
-            <label>Your name <input name="Name" required></label>
+            <label>Your name <input name="nome" required></label>
             <label>Your email <input type="email" name="email" required></label>
           </div>
           <div class="row">
             <label>Package
-              <select name="Package" required>
+              <select name="pacote" required>
                 <option value="Gift">Gift — US$ 35</option>
                 <option value="Artist">Artist — US$ 90</option>
                 <option value="Custom scene">Custom scene — from US$ 250</option>
               </select>
             </label>
             <label>Scene
-              <select name="Scene">
+              <select name="cenario">
                 <option>You pick for me</option>
                 <option>Truck bed</option>
                 <option>River boat</option>
@@ -214,23 +210,24 @@
             </label>
           </div>
           <label>Song link <small>YouTube or Spotify. For Artist, please also send a high-quality audio file if you can (Drive/Dropbox link).</small>
-            <input type="url" name="Song" placeholder="https://" required>
+            <input type="url" name="musica" placeholder="https://" required>
           </label>
           <div class="row">
             <label>Part <small>Start and end, up to 60 s. E.g. 0:45 to 1:40</small>
-              <input name="Part" required>
+              <input name="trecho" required>
             </label>
             <label>Kick drum text <small>Up to 2 short lines</small>
-              <input name="Kick drum" placeholder="E.g. Ana & Leo">
+              <input name="bumbo" placeholder="E.g. Ana & Leo">
             </label>
           </div>
           <label>When do you need it? <small>Date or occasion. Standard delivery: up to 10 business days after payment.</small>
-            <input name="Deadline">
+            <input name="prazo">
           </label>
           <label>Anything else? <small>Custom scene idea, who's who, anything useful.</small>
-            <textarea name="Notes"></textarea>
+            <textarea name="obs"></textarea>
           </label>
-          <label class="check"><input type="checkbox" name="Accepted rules" value="yes" required> I've read and accept the rules above.</label>
+          <label class="check"><input type="checkbox" name="regras" value="yes" required> I've read and accept the rules above.</label>
+          <p class="form-erro" hidden></p>
           <div><button class="btn" type="submit">Send order</button></div>
           <p class="after">If I accept, you'll get the final price and a card payment link by email.</p>
         </form>
@@ -250,5 +247,6 @@
     <p><a href="https://www.youtube.com/@abandadepapel" target="_blank" rel="noopener">YouTube</a> · <a href="#order">Place an order</a> · <a href="../" hreflang="pt-BR">Português</a></p>
     <p>Paper Band — everything drawn with code, in spare time.</p>
   </footer>
+  <script src="../pedido.js"></script>
 </body>
 </html>
