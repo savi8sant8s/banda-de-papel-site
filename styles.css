@@ -41,7 +41,7 @@ a { color: inherit; }
 /* topo */
 .top {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 0;
+  padding-block: 14px;
 }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; letter-spacing: .02em; }
 .brand img { width: 38px; height: 38px; border-radius: 50%; }
@@ -49,7 +49,14 @@ a { color: inherit; }
 .top nav a { text-decoration: none; opacity: .85; }
 .top nav a:hover { opacity: 1; }
 .lang { border: 2px solid var(--paper); padding: 2px 10px; border-radius: 99px; font-weight: 600; }
-@media (max-width: 720px) { .top nav a:not(.lang) { display: none; } }
+@media (max-width: 720px) {
+  /* no celular o menu vai pra uma linha própria, que rola de lado se não couber */
+  .top { flex-wrap: wrap; gap: 8px; padding-block: 12px 4px; }
+  .top nav { order: 3; width: 100%; gap: 20px; font-size: 15px; overflow-x: auto; scrollbar-width: none; padding: 4px 0; }
+  .top nav::-webkit-scrollbar { display: none; }
+  .top nav a { white-space: nowrap; }
+  .top nav .lang { margin-left: auto; }
+}
 
 /* hero */
 .hero { padding: 8px 0 48px; }
@@ -73,7 +80,6 @@ a { color: inherit; }
   .paper { padding: 22px 18px; }
   .paper::before { margin: -22px -18px 18px; }
   .hero-text { margin-top: -16px; }
-  .scenes { grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .scene figcaption { font-size: 13px; }
 }
 
@@ -171,6 +177,55 @@ button:disabled { opacity: .6; cursor: wait; }
 /* o selo flutuante do reCAPTCHA cobre o conteúdo no celular; o aviso fica no formulário */
 .grecaptcha-badge { visibility: hidden; }
 .recaptcha a { color: inherit; }
+
+/* carrosséis: no celular as grades viram uma fileira que desliza de lado */
+.dots { display: none; }
+@media (max-width: 720px) {
+  body { font-size: 17px; }
+  section { padding: 36px 0; }
+  .section-head { margin-bottom: 18px; }
+  .lead { font-size: 18px; }
+  .hero { padding-bottom: 28px; }
+  h3.sub { margin-top: 28px; }
+
+  .reels, .scenes, .plans, .reviews {
+    display: flex; gap: 12px; align-items: stretch;
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    margin: 0 -16px; padding: 8px 16px 12px; scroll-padding: 0 16px;
+    scrollbar-width: none;
+  }
+  .reels::-webkit-scrollbar, .scenes::-webkit-scrollbar,
+  .plans::-webkit-scrollbar, .reviews::-webkit-scrollbar { display: none; }
+  .reels > *, .scenes > *, .plans > *, .reviews > * { flex: 0 0 auto; scroll-snap-align: start; }
+  .reel { width: 42%; }
+  .scene { width: 31%; }
+  .plan, .review { width: 84%; }
+
+  .dots { display: flex; justify-content: center; gap: 8px; margin-top: 6px; }
+  .dots[hidden] { display: none; }
+  .dots button {
+    width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%;
+    background: var(--paper); opacity: .3; cursor: pointer; transition: opacity .2s, width .2s;
+  }
+  .dots button[aria-current="true"] { opacity: 1; width: 22px; border-radius: 99px; }
+
+  .rules li { padding-left: 42px; }
+  .rules li::before { width: 30px; height: 30px; }
+  .extras { margin-top: 18px; }
+}
+
+/* botão de pedido fixo no celular, some no topo e perto do formulário */
+.cta-fixo { display: none; }
+@media (max-width: 720px) {
+  .cta-fixo {
+    display: block; position: fixed; z-index: 10; left: 16px; right: 16px;
+    bottom: calc(14px + env(safe-area-inset-bottom)); text-align: center;
+    box-shadow: 0 4px 0 var(--orange-dark), 0 8px 24px rgba(0, 0, 0, .35);
+    transition: transform .25s, opacity .25s;
+  }
+  .cta-fixo[data-escondido] { transform: translateY(140%); opacity: 0; pointer-events: none; }
+  body:has(.cta-fixo) footer { padding-bottom: 96px; }
+}
 
 /* FAQ */
 details { border-bottom: 1px solid #ffffff2a; padding: 14px 0; }
