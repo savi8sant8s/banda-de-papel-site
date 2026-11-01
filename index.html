@@ -3,15 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Banda de Papel — a sua banda, em papel</title>
-  <meta name="description" content="Vídeos sob medida: a sua banda (ou a música de vocês) em papel recortado, com cenário criado pra letra e legenda no tempo da voz. Pra divulgar um lançamento ou dar de presente.">
+  <title>Banda de Papel</title>
+  <meta name="description" content="Kits de papel pra montar, vídeos sob medida e apoio ao canal da Banda de Papel.">
   <link rel="canonical" href="https://bandadepapel.cloud/">
-  <link rel="alternate" hreflang="pt-BR" href="https://bandadepapel.cloud/">
-  <link rel="alternate" hreflang="en" href="https://bandadepapel.cloud/en/">
-  <meta property="og:title" content="Banda de Papel — vídeos sob encomenda">
-  <meta property="og:description" content="Sua música tocada por uma banda de papel recortado. Para presente ou para a sua banda.">
+  <meta property="og:title" content="Banda de Papel">
+  <meta property="og:description" content="Kits de papel pra montar, vídeos sob medida e apoio ao canal da Banda de Papel.">
   <meta property="og:image" content="https://bandadepapel.cloud/assets/banner.jpg">
-  <meta property="og:url" content="https://bandadepapel.cloud/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -23,141 +20,45 @@
 <body>
   <header class="wrap top">
     <a class="brand" href="./"><img src="assets/avatar.png" alt="">Banda de Papel</a>
-    <nav>
-      <a href="#como">Como funciona</a>
-      <a href="#precos">Preços</a>
-      <a href="#pedido">Pedido</a>
-      <a class="lang" href="en/" hreflang="en" lang="en">EN</a>
-    </nav>
-    <a class="cafe" href="kits.html">📄 Kits de papel</a>
+    <nav><a href="kits.html">Kits de papel</a><a href="videos.html">Vídeo sob medida</a><a href="apoie.html">Apoie</a><a class="lang" href="en/">EN</a></nav>
   </header>
-
   <main>
-    <section class="wrap hero">
-      <img class="hero-art" src="assets/banner.jpg" alt="A banda de papel tocando numa estrada à noite, com confete e lua cheia">
-      <div class="hero-text paper tilt-l">
-        <h1>A sua banda, em papel.</h1>
-        <p class="lead">Um vídeo feito do zero pra sua música: bonecos parecidos com quem toca, um cenário pensado pra letra e a legenda no tempo da voz. Pra lançar um single ou pra dar de presente.</p>
-        <div class="actions">
-          <a class="btn" href="#pedido">Pedir orçamento</a>
-          <a class="btn ghost" href="https://www.instagram.com/abandadepapel/" target="_blank" rel="noopener">Ver os vídeos</a>
-        </div>
-        <p class="proof">Mais de 100 mil visualizações num só dia no <a href="https://www.instagram.com/abandadepapel/" target="_blank" rel="noopener">@abandadepapel</a>.</p>
-      </div>
-    </section>
-
-    <section class="wrap" id="avaliacoes" hidden>
-      <div class="section-head">
-        <h2>Quem já pediu</h2>
-        <p>O que os clientes acharam do vídeo.</p>
-      </div>
-      <div class="reviews"></div>
-    </section>
-
-    <section class="wrap" id="como">
-      <h2>Como funciona</h2>
-      <ol class="rules">
-        <li><b>Você conta a ideia.</b> A música, o trecho, quem aparece e o clima que você imagina.</li>
-        <li><b>Eu respondo com o orçamento</b> em até 3 dias úteis. Pedido não é compra: se não fechar, você não paga nada.</li>
-        <li><b>Pagou, começo.</b> Pix ou cartão por link. Você recebe uma prévia pra conferir e o vídeo final em até 10 dias úteis.</li>
-      </ol>
-    </section>
-
-    <section class="wrap" id="precos">
-      <div class="section-head">
-        <h2>Preços</h2>
-        <p>Cada vídeo é único, então o valor final depende do trecho e do cenário. Vídeo vertical (1080×1920), até 60 segundos, com a letra legendada.</p>
-      </div>
-      <div class="plans">
-        <article class="plan paper featured">
-          <h3>Artista ou banda</h3>
-          <p class="for">Pra divulgar a sua música.</p>
-          <p class="price"><small>a partir de</small> R$ 400</p>
-          <ul>
-            <li>Bonecos parecidos com a banda</li>
-            <li>Cenário criado pra música</li>
-            <li>Liberado pra postar e impulsionar</li>
-          </ul>
-        </article>
-        <article class="plan paper tilt-r">
-          <h3>Presente</h3>
-          <p class="for">Aniversário, casamento, "a nossa música".</p>
-          <p class="price"><small>a partir de</small> R$ 150</p>
-          <ul>
-            <li>Qualquer música</li>
-            <li>Um nome ou frase no bumbo</li>
-            <li>Pra uso pessoal</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="wrap" id="pedido">
-      <div class="paper tilt-r">
-        <h2>Pedir orçamento</h2>
-        <p class="lead">Ainda não é pagamento. Respondo em até 3 dias úteis.</p>
-        <form id="pedido-form" data-obrigado="obrigado.html">
-          <input type="hidden" name="idioma" value="PT">
-          <input class="honey" type="text" name="site" tabindex="-1" autocomplete="off">
-
-          <div class="row">
-            <label>Seu nome <input name="nome" required></label>
-            <label>Seu e-mail <input type="email" name="email" required></label>
-          </div>
-          <label>É pra quê?
-            <select name="pacote" required>
-              <option value="Artista">Divulgar a minha música (artista ou banda)</option>
-              <option value="Presente">Presente</option>
-            </select>
-          </label>
-          <label>Link da música <small>YouTube ou Spotify. Se a música for sua, mande também o áudio em boa qualidade (link do Drive).</small>
-            <input type="url" name="musica" placeholder="https://" required>
-          </label>
-          <div class="row">
-            <label>Trecho <small>Início e fim, até 60 s. Ex.: 0:45 a 1:40</small>
-              <input name="trecho" required>
-            </label>
-            <label>Precisa pra quando? <small>Data ou ocasião</small>
-              <input name="prazo">
-            </label>
-          </div>
-          <label>Conte a ideia <small>Quem aparece e o que cada um toca, como eles são (cabelo, roupa), o clima do cenário. Pode mandar link de foto.</small>
-            <textarea name="obs" required></textarea>
-          </label>
-          <label class="check"><input type="checkbox" name="regras" value="sim" required> <span>Li e aceito as <a href="#regras">regras</a>.</span></label>
-          <p class="form-erro" hidden></p>
-          <div><button class="btn" type="submit">Pedir orçamento</button></div>
-          <p class="after recaptcha">Protegido pelo reCAPTCHA do Google (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacidade</a> e <a href="https://policies.google.com/terms" target="_blank" rel="noopener">termos</a>).</p>
-        </form>
+    <section class="wrap intro">
+      <h1>Músicas tocadas por uma banda de papel.</h1>
+      <p class="lead">Escolha o que você procura:</p>
+      <div class="paths">
+        <a class="path" href="kits.html">
+          <img src="assets/kits/forro.jpg" alt="" loading="lazy">
+          <span class="path-body"><b>Kits de papel</b><span>Imprima, recorte e monte uma banda de papel. Tem kit grátis.</span><span class="btn">Ver os kits</span></span>
+        </a>
+        <a class="path" href="videos.html">
+          <img src="assets/banner.jpg" alt="" loading="lazy">
+          <span class="path-body"><b>Vídeo sob medida</b><span>Um vídeo da sua música com a sua banda em papel. Pra lançamento ou presente.</span><span class="btn">Pedir orçamento</span></span>
+        </a>
+        <a class="path" href="apoie.html">
+          <img src="assets/avatar.png" alt="" loading="lazy">
+          <span class="path-body"><b>Apoie o canal</b><span>Gostou dos vídeos? Qualquer valor, por Pix ou Bitcoin.</span><span class="btn">Apoiar</span></span>
+        </a>
       </div>
     </section>
 
     <section class="wrap" id="duvidas">
       <h2>Dúvidas</h2>
-      <details id="regras"><summary>Regras</summary>
-        <ul>
-          <li><b>Pagamento antes de começar.</b> O prazo de até 10 dias úteis conta a partir do pagamento. Precisa com urgência? Pergunte no pedido.</li>
-          <li><b>Uma prévia pra conferir.</b> Corrijo de graça o que for erro meu (letra, legenda fora do tempo, nome errado). Mudança de ideia depois da prévia é cobrada à parte.</li>
-          <li><b>Estilo de papel recortado.</b> Os bonecos são inspirados em quem aparece (cabelo, roupa, instrumento), não são caricatura nem foto.</li>
-          <li><b>Direitos da música.</b> No Presente, o vídeo é pra uso pessoal, sem monetizar. Pra divulgar, você declara que tem os direitos da música ou autorização pra usá-la.</li>
-          <li><b>Portfólio.</b> Posso mostrar o vídeo no canal, a não ser que você peça pra não mostrar.</li>
-          <li><b>Reembolso.</b> Se eu não conseguir entregar, devolvo 100%. Depois da prévia, não há reembolso.</li>
-        </ul>
-      </details>
-      <details><summary>Posso escolher qualquer música?</summary><p>Sim, desde que tenha voz e letra que dê pra legendar. Instrumentais também funcionam, só não têm legenda.</p></details>
-      <details><summary>Dá pra fazer a música inteira?</summary><p>Os vídeos são de até 60 segundos, o formato de Reels, Shorts e TikTok. Se precisar de mais, conte no pedido.</p></details>
-      <details><summary>Aceitam pedidos de fora do Brasil?</summary><p>Sim. Os preços em dólar ficam na <a href="en/">versão em inglês</a> e o pagamento é por cartão (link).</p></details>
+      <details><summary>O que é a Banda de Papel?</summary><p>Um canal de vídeos em que uma banda de papel recortado toca músicas, com a letra no tempo da voz. Tudo é desenhado por código.</p></details>
+      <details><summary>Os kits são entregues impressos?</summary><p>Não. São arquivos PDF pra imprimir em casa, em A4. O grátis você baixa na hora; os pagos chegam no seu e-mail depois do Pix.</p></details>
+      <details><summary>Como peço um vídeo?</summary><p>Na página Vídeo sob medida: você conta a ideia, eu respondo com o orçamento em até 3 dias úteis e só depois você paga.</p></details>
+      <details><summary>Vocês fazem banda famosa?</summary><p>Os kits têm bandas inventadas. Nos vídeos sob medida, os bonecos são inspirados em quem aparece, em estilo de papel recortado.</p></details>
+      <details><summary>Falo com quem?</summary><p>Pelo <a href="https://www.instagram.com/abandadepapel/" target="_blank" rel="noopener">Instagram</a>, ou pelo formulário de pedido.</p></details>
     </section>
-  </main>
 
+  </main>
   <footer class="wrap">
-    <p><a href="https://www.instagram.com/abandadepapel/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@abandadepapel" target="_blank" rel="noopener">YouTube</a> · <a href="#pedido">Pedir orçamento</a> · <a href="en/" hreflang="en">English</a></p>
+    <div class="social">
+        <a href="https://www.instagram.com/abandadepapel/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@abandadepapel" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.tiktok.com/@abandadepapel" target="_blank" rel="noopener">TikTok</a>
+      </div>
     <p>Banda de Papel — tudo desenhado por código, nas horas vagas.</p>
-    <p>Gostou? <a href="kits.html">Monte uma banda de papel</a> · <a href="apoie.html">Apoie com Bitcoin</a></p>
   </footer>
-  <a class="btn cta-fixo" href="#pedido" data-escondido>Pedir orçamento</a>
-  <script src="pedido.js"></script>
-  <script src="avaliacoes.js"></script>
-  <script src="site.js"></script>
 </body>
 </html>

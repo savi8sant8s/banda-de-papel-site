@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Custom videos — Paper Band</title>
+  <meta name="description" content="Your band (or your song) in cut paper, with a scene built for the lyrics.">
+  <link rel="canonical" href="https://bandadepapel.cloud/en/videos.html">
+  <meta property="og:title" content="Custom videos — Paper Band">
+  <meta property="og:description" content="Your band (or your song) in cut paper, with a scene built for the lyrics.">
+  <meta property="og:image" content="https://bandadepapel.cloud/assets/banner.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="wrap top">
+    <a class="brand" href="./"><img src="../assets/avatar.png" alt="">Paper Band</a>
+    <nav><a href="kits.html">Paper kits</a><a href="videos.html" aria-current="page">Custom videos</a><a href="support.html">Support</a><a class="lang" href="../videos.html">PT</a></nav>
+  </header>
+  <main>
+    <section class="wrap intro hero">
+      <h1>Your band, in paper.</h1>
+      <p class="lead">A video made from scratch for your song: paper figures that look like the people who play it, a scene built for the lyrics and synced captions.</p>
+      <div class="chips">
+        <span><b>Artist or band</b> from US$ 100</span>
+        <span><b>Gift</b> from US$ 40</span>
+      </div>
+      <ol class="steps">
+        <li>You tell me your idea</li>
+        <li>I reply with a quote (within 3 business days)</li>
+        <li>Once paid, you get a preview and the video within 10 business days</li>
+      </ol>
+      <a class="btn" href="#order">Get a quote</a>
+    </section>
+
+    <section class="wrap" id="avaliacoes" hidden>
+      <h2>Reviews</h2>
+      <div class="reviews"></div>
+    </section>
+
+    <section class="wrap" id="order">
+      <div class="paper">
+        <h2>Get a quote</h2>
+        <p class="lead">No payment yet.</p>
+        <form id="pedido-form" data-obrigado="thanks.html">
+          <input type="hidden" name="idioma" value="EN">
+          <input class="honey" type="text" name="site" tabindex="-1" autocomplete="off">
+
+          <div class="row">
+            <label>Your name <input name="nome" required></label>
+            <label>Your email <input type="email" name="email" required></label>
+          </div>
+          <label>What is it for?
+            <select name="pacote" required>
+              <option value="Artista">Promoting my music (artist or band)</option>
+              <option value="Presente">A gift</option>
+            </select>
+          </label>
+          <label>Song link <small>YouTube or Spotify. If it's your song, also send the high-quality audio (Drive link).</small>
+            <input type="url" name="musica" placeholder="https://" required>
+          </label>
+          <div class="row">
+            <label>Part <small>Start and end, up to 60 s. E.g. 0:45 to 1:40</small>
+              <input name="trecho" required>
+            </label>
+            <label>When do you need it? <small>Date or occasion</small>
+              <input name="prazo">
+            </label>
+          </div>
+          <label>Tell me your idea <small>Who's in it and what each one plays, what they look like (hair, clothes), the mood of the scene. Photo links are welcome.</small>
+            <textarea name="obs" required></textarea>
+          </label>
+          <label class="check"><input type="checkbox" name="regras" value="sim" required> <span>I've read and accept the <a href="#rules">rules</a>.</span></label>
+          <p class="form-erro" hidden></p>
+          <div><button class="btn" type="submit">Get a quote</button></div>
+          <p class="after recaptcha">Protected by Google reCAPTCHA (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">terms</a>).</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="wrap" id="duvidas">
+      <h2>FAQ</h2>
+      <details id="rules"><summary>Rules</summary><p>Payment before I start; delivery time counts from it. One preview to check: I fix my own mistakes for free; changes of mind after the preview are charged separately. Figures are inspired by the people in the video, in cut-paper style. Gift videos are for personal use; to promote, you confirm you own the rights to the song. If I can't deliver, you get 100% back.</p></details>
+      <details><summary>Can I pick any song?</summary><p>Yes, as long as it has vocals and lyrics I can caption. Instrumentals work too, without captions.</p></details>
+      <details><summary>How do I pay?</summary><p>By card through a payment link, after we agree on the quote by email.</p></details>
+    </section>
+
+  </main>
+  <footer class="wrap">
+    <div class="social">
+        <a href="https://www.instagram.com/abandadepapel/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@abandadepapel" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.tiktok.com/@abandadepapel" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    <p>Paper Band — all drawn with code, in my spare time.</p>
+  </footer>
+  <a class="btn cta-fixo" href="#order" data-escondido>Get a quote</a>
+  <script src="../pedido.js"></script>
+  <script src="../avaliacoes.js"></script>
+  <script src="../site.js"></script>
+</body>
+</html>

@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Support Paper Band</title>
-  <meta name="description" content="Like the videos? Support with Bitcoin.">
+  <title>Support — Paper Band</title>
+  <meta name="description" content="Support Paper Band with Bitcoin or Pix.">
   <link rel="canonical" href="https://bandadepapel.cloud/en/support.html">
-  <meta property="og:title" content="Support Paper Band">
-  <meta property="og:description" content="Like the videos? Support with Bitcoin.">
-  <meta property="og:image" content="https://bandadepapel.cloud/assets/kits/forro.jpg">
+  <meta property="og:title" content="Support — Paper Band">
+  <meta property="og:description" content="Support Paper Band with Bitcoin or Pix.">
+  <meta property="og:image" content="https://bandadepapel.cloud/assets/banner.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../assets/favicon.png">
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,24 +18,62 @@
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-  <main class="wrap thanks">
-    <div class="paper tilt-l support">
-      <img src="../assets/avatar.png" alt="">
-      <h1>Support with Bitcoin</h1>
+  <header class="wrap top">
+    <a class="brand" href="./"><img src="../assets/avatar.png" alt="">Paper Band</a>
+    <nav><a href="kits.html">Paper kits</a><a href="videos.html">Custom videos</a><a href="support.html" aria-current="page">Support</a><a class="lang" href="../apoie.html">PT</a></nav>
+  </header>
+  <main>
+    <section class="wrap intro">
+      <h1>Support the channel</h1>
       <p class="lead">Enjoying the videos or the kits? Any amount helps keep them coming.</p>
-      <img class="qr" src="../assets/bitcoin.png" alt="Bitcoin address QR code">
-      <textarea id="btc" readonly rows="2">bc1q7zyg6vjuqrzs87p2w3x9tp60eta7x5uuhquy8z</textarea>
-      <button class="btn" type="button" id="copiar-btc">Copy address</button>
-      <p class="note">Bitcoin network (on-chain). Double-check the address before sending.</p>
-      <p><a href="./">Back to the site</a></p>
-    </div>
+      <div class="gives">
+        <div class="paper give">
+          <h2>Bitcoin</h2>
+          <img class="qr" src="../assets/bitcoin.png" alt="QR code Bitcoin">
+          <textarea id="c-btc" readonly rows="2" aria-label="Bitcoin">bc1q7zyg6vjuqrzs87p2w3x9tp60eta7x5uuhquy8z</textarea>
+          <button class="btn ghost" type="button" data-copia="c-btc">Copy address</button>
+          <p class="note">Bitcoin network (on-chain).</p>
+        </div>
+        <div class="paper give">
+          <h2>Pix</h2>
+          <img class="qr" src="../assets/pix/pix-apoio.png" alt="QR code do Pix">
+          <textarea id="c-pix" readonly rows="3" aria-label="Pix copia e cola">00020126580014br.gov.bcb.pix01364cf4c301-a8ab-4828-af68-8b0cc02dc7a55204000053039865802BR5914BANDA DE PAPEL6006BRASIL62070503***63049B94</textarea>
+          <button class="btn ghost" type="button" data-copia="c-pix">Copy Pix code</button>
+          <p class="note">From Brazil: you choose the amount in your bank app.</p>
+        </div>
+      </div>
+
+      <h2 class="give-title">For free</h2>
+      <div class="icons">
+        <div><span>🔁</span><b>Share</b><p>Send a video to a friend. It's what helps the most.</p></div>
+        <div><span>💬</span><b>Comment and save</b><p>And suggest the next song.</p></div>
+        <div><span>🏷️</span><b>Tag the band</b><p>If they repost, the video goes much further.</p></div>
+        <div><span>➕</span><b>Follow</b><p><a href="https://www.instagram.com/abandadepapel/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@abandadepapel" target="_blank" rel="noopener">YouTube</a> · <a href="https://www.tiktok.com/@abandadepapel" target="_blank" rel="noopener">TikTok</a></p></div>
+      </div>
+
+      <h2 class="give-title">Channel goals</h2>
+      <div class="icons goals">
+        <div><span>🎯</span><b>1,000 YouTube subscribers</b><p>Unlocks channel monetization.</p></div>
+        <div><span>🎸</span><b>A new song every week</b><p>With a scene made for each song.</p></div>
+        <div><span>✂️</span><b>More paper kits</b><p>New bands and scenery in the collection.</p></div>
+      </div>
+    </section>
+
   </main>
+  <footer class="wrap">
+    <div class="social">
+        <a href="https://www.instagram.com/abandadepapel/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@abandadepapel" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.tiktok.com/@abandadepapel" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    <p>Paper Band — all drawn with code, in my spare time.</p>
+  </footer>
   <script>
-    document.querySelector("#copiar-btc").addEventListener("click", async (ev) => {
-      const t = document.querySelector("#btc");
+    document.querySelectorAll("[data-copia]").forEach((b) => b.addEventListener("click", async () => {
+      const t = document.getElementById(b.dataset.copia);
       try { await navigator.clipboard.writeText(t.value.trim()); } catch { t.select(); document.execCommand("copy"); }
-      ev.target.textContent = "Copied!";
-    });
+      const antes = b.textContent; b.textContent = "✓"; setTimeout(() => (b.textContent = antes), 1500);
+    }));
   </script>
 </body>
 </html>

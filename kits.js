@@ -37,3 +37,17 @@
     setTimeout(() => (ev.target.textContent = "Copiar código Pix"), 2000);
   });
 })();
+
+// O e-mail é por onde os PDFs chegam: só envia se os dois campos baterem.
+(() => {
+  const form = document.querySelector("#pedido-form");
+  const e1 = document.querySelector("#email1"), e2 = document.querySelector("#email2");
+  const confere = () => e2.setCustomValidity(
+    e1.value.trim().toLowerCase() === e2.value.trim().toLowerCase() ? "" : "Os dois e-mails estão diferentes.");
+  e1.addEventListener("input", confere);
+  e2.addEventListener("input", confere);
+  form.addEventListener("submit", (ev) => {
+    confere();
+    if (!e2.checkValidity()) { ev.preventDefault(); ev.stopImmediatePropagation(); e2.reportValidity(); }
+  });
+})();

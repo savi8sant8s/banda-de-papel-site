@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vídeo sob medida — Banda de Papel</title>
+  <meta name="description" content="A sua banda (ou a música de vocês) em papel recortado, com cenário criado pra letra.">
+  <link rel="canonical" href="https://bandadepapel.cloud/videos.html">
+  <meta property="og:title" content="Vídeo sob medida — Banda de Papel">
+  <meta property="og:description" content="A sua banda (ou a música de vocês) em papel recortado, com cenário criado pra letra.">
+  <meta property="og:image" content="https://bandadepapel.cloud/assets/banner.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="wrap top">
+    <a class="brand" href="./"><img src="assets/avatar.png" alt="">Banda de Papel</a>
+    <nav><a href="kits.html">Kits de papel</a><a href="videos.html" aria-current="page">Vídeo sob medida</a><a href="apoie.html">Apoie</a><a class="lang" href="en/videos.html">EN</a></nav>
+  </header>
+  <main>
+    <section class="wrap intro hero">
+      <h1>A sua banda, em papel.</h1>
+      <p class="lead">Um vídeo feito do zero pra sua música: bonecos parecidos com quem toca, cenário pensado pra letra e legenda no tempo da voz.</p>
+      <div class="chips">
+        <span><b>Artista ou banda</b> a partir de R$ 400</span>
+        <span><b>Presente</b> a partir de R$ 150</span>
+      </div>
+      <ol class="steps">
+        <li>Você conta a ideia</li>
+        <li>Eu respondo com o orçamento (até 3 dias úteis)</li>
+        <li>Pagou, recebe uma prévia e o vídeo em até 10 dias úteis</li>
+      </ol>
+      <a class="btn" href="#pedido">Pedir orçamento</a>
+    </section>
+
+    <section class="wrap" id="avaliacoes" hidden>
+      <h2>Quem já pediu</h2>
+      <div class="reviews"></div>
+    </section>
+
+    <section class="wrap" id="pedido">
+      <div class="paper">
+        <h2>Pedir orçamento</h2>
+        <p class="lead">Ainda não é pagamento.</p>
+        <form id="pedido-form" data-obrigado="obrigado.html">
+          <input type="hidden" name="idioma" value="PT">
+          <input class="honey" type="text" name="site" tabindex="-1" autocomplete="off">
+
+          <div class="row">
+            <label>Seu nome <input name="nome" required></label>
+            <label>Seu e-mail <input type="email" name="email" required></label>
+          </div>
+          <label>É pra quê?
+            <select name="pacote" required>
+              <option value="Artista">Divulgar a minha música (artista ou banda)</option>
+              <option value="Presente">Presente</option>
+            </select>
+          </label>
+          <label>Link da música <small>YouTube ou Spotify. Se a música for sua, mande também o áudio em boa qualidade (link do Drive).</small>
+            <input type="url" name="musica" placeholder="https://" required>
+          </label>
+          <div class="row">
+            <label>Trecho <small>Início e fim, até 60 s. Ex.: 0:45 a 1:40</small>
+              <input name="trecho" required>
+            </label>
+            <label>Precisa pra quando? <small>Data ou ocasião</small>
+              <input name="prazo">
+            </label>
+          </div>
+          <label>Conte a ideia <small>Quem aparece e o que cada um toca, como eles são (cabelo, roupa), o clima do cenário. Pode mandar link de foto.</small>
+            <textarea name="obs" required></textarea>
+          </label>
+          <label class="check"><input type="checkbox" name="regras" value="sim" required> <span>Li e aceito as <a href="#regras">regras</a>.</span></label>
+          <p class="form-erro" hidden></p>
+          <div><button class="btn" type="submit">Pedir orçamento</button></div>
+          <p class="after recaptcha">Protegido pelo reCAPTCHA do Google (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacidade</a> e <a href="https://policies.google.com/terms" target="_blank" rel="noopener">termos</a>).</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="wrap" id="duvidas">
+      <h2>Dúvidas</h2>
+      <details id="regras"><summary>Regras</summary><p>Pagamento antes de começar; o prazo conta a partir dele. Uma prévia pra conferir: corrijo de graça o que for erro meu (letra, legenda, nome); mudança de ideia depois da prévia é cobrada à parte. Os bonecos são inspirados em quem aparece (cabelo, roupa, instrumento), sem caricatura nem foto. No Presente o vídeo é pra uso pessoal; pra divulgar, você declara que tem os direitos da música. Posso mostrar o vídeo no canal, a não ser que você peça pra não mostrar. Se eu não conseguir entregar, devolvo 100%.</p></details>
+      <details><summary>Posso escolher qualquer música?</summary><p>Sim, desde que tenha voz e letra que dê pra legendar. Instrumentais também funcionam, sem legenda.</p></details>
+      <details><summary>Dá pra fazer a música inteira?</summary><p>Os vídeos são de até 60 segundos (Reels, Shorts e TikTok). Se precisar de mais, conte no pedido.</p></details>
+      <details><summary>Como pago?</summary><p>Por Pix, depois que a gente fechar o orçamento por e-mail.</p></details>
+    </section>
+
+  </main>
+  <footer class="wrap">
+    <div class="social">
+        <a href="https://www.instagram.com/abandadepapel/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@abandadepapel" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.tiktok.com/@abandadepapel" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    <p>Banda de Papel — tudo desenhado por código, nas horas vagas.</p>
+  </footer>
+  <a class="btn cta-fixo" href="#pedido" data-escondido>Pedir orçamento</a>
+  <script src="pedido.js"></script>
+  <script src="avaliacoes.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>
