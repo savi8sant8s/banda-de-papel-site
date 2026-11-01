@@ -2,7 +2,7 @@
 (() => {
   const pt = document.documentElement.lang.startsWith("pt");
 
-  for (const trilho of document.querySelectorAll(".reels, .scenes, .plans, .reviews")) {
+  for (const trilho of document.querySelectorAll(".plans, .reviews")) {
     const dots = document.createElement("div");
     dots.className = "dots";
     trilho.after(dots);
@@ -50,4 +50,14 @@
     obs.observe(hero);
     obs.observe(pedido);
   }
+})();
+
+// Link pra uma pergunta (ex.: #regras) abre ela.
+(() => {
+  const abre = () => {
+    const alvo = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (alvo?.tagName === "DETAILS") alvo.open = true;
+  };
+  addEventListener("hashchange", abre);
+  abre();
 })();
