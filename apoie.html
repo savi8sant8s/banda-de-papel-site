@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apoie a Banda de Papel</title>
+  <meta name="description" content="Gostou dos vídeos? Apoie com Bitcoin.">
+  <link rel="canonical" href="https://bandadepapel.cloud/apoie.html">
+  <meta property="og:title" content="Apoie a Banda de Papel">
+  <meta property="og:description" content="Gostou dos vídeos? Apoie com Bitcoin.">
+  <meta property="og:image" content="https://bandadepapel.cloud/assets/kits/forro.jpg">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="wrap thanks">
+    <div class="paper tilt-l support">
+      <img src="assets/avatar.png" alt="">
+      <h1>Apoie com Bitcoin</h1>
+      <p class="lead">Gostou dos vídeos ou dos kits? Qualquer valor ajuda a continuar fazendo.</p>
+      <img class="qr" src="assets/bitcoin.png" alt="QR code do endereço Bitcoin">
+      <textarea id="btc" readonly rows="2">bc1q7zyg6vjuqrzs87p2w3x9tp60eta7x5uuhquy8z</textarea>
+      <button class="btn" type="button" id="copiar-btc">Copiar endereço</button>
+      <p class="note">Rede Bitcoin (on-chain). Confira o endereço antes de enviar.</p>
+      <p><a href="./">Voltar ao site</a></p>
+    </div>
+  </main>
+  <script>
+    document.querySelector("#copiar-btc").addEventListener("click", async (ev) => {
+      const t = document.querySelector("#btc");
+      try { await navigator.clipboard.writeText(t.value.trim()); } catch { t.select(); document.execCommand("copy"); }
+      ev.target.textContent = "Copiado!";
+    });
+  </script>
+</body>
+</html>

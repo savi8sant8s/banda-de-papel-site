@@ -234,3 +234,32 @@ footer a { margin: 0 8px; }
 .thanks .paper { max-width: 560px; text-align: center; }
 .thanks form { text-align: left; margin-top: 8px; }
 .thanks img { width: 120px; border-radius: 50%; margin: 0 auto 18px; }
+
+/* kits de papel */
+.kits-hero .paper { max-width: 760px; }
+.free { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: center; }
+.free img { width: 100%; border-radius: var(--radius); }
+.free p { color: var(--ink-soft); }
+@media (max-width: 720px) { .free { grid-template-columns: 1fr; } }
+.kits { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; }
+.kit { display: block; position: relative; cursor: pointer; margin: 0; padding: 0 0 18px; overflow: hidden; transition: transform .15s; }
+.kit::before { margin: 0 0 0; }
+.kit img { width: 100%; display: block; }
+.kit h3, .kit p, .kit-pick { margin-left: 18px; margin-right: 18px; }
+.kit h3 { margin-top: 14px; margin-bottom: 4px; }
+.kit p { color: var(--ink-soft); font-size: 15px; margin-top: 0; }
+.kit-num { position: absolute; top: 16px; left: 12px; background: var(--paper); color: var(--ink); font-weight: 700;
+  font-size: 14px; padding: 2px 10px; border-radius: 99px; box-shadow: var(--shadow); }
+.kit-pick { display: flex; gap: 8px; align-items: center; font-weight: 700; }
+.kit-pick input, .all input { width: 20px; height: 20px; }
+.kit.escolhido { outline: 4px solid var(--orange); transform: translateY(-3px); }
+.all { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 22px; cursor: pointer; font-size: 18px; }
+.all span { color: var(--ink-soft); font-size: 15px; }
+.pix { display: grid; grid-template-columns: 240px 1fr; gap: 24px; align-items: start; margin-bottom: 18px; }
+.pix img { width: 240px; image-rendering: pixelated; border-radius: 8px; background: #fff; }
+.pix textarea, .support textarea { width: 100%; font-family: monospace; font-size: 13px; resize: none; margin-bottom: 10px; }
+@media (max-width: 640px) { .pix { grid-template-columns: 1fr; } .pix img { margin: 0 auto; } }
+.support .qr { width: 220px; border-radius: 8px; image-rendering: pixelated; }
+.free::before { grid-column: 1 / -1; }
+.free > div p:first-of-type { margin-top: 0; }
+.all input, .kit-pick input { flex: none; padding: 0; margin: 0; width: 20px; height: 20px; }
