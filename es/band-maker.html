@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Arma tu banda de papel — Banda de Papel</title>
+  <meta name="description" content="Arma tu banda de papel gratis: elige quién toca qué y el escenario, y comparte la imagen.">
+  <link rel="canonical" href="https://bandadepapel.cloud/es/band-maker.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://bandadepapel.cloud/monte.html">
+  <link rel="alternate" hreflang="en" href="https://bandadepapel.cloud/en/band-maker.html">
+  <link rel="alternate" hreflang="es" href="https://bandadepapel.cloud/es/band-maker.html">
+  <meta property="og:title" content="Arma tu banda de papel">
+  <meta property="og:description" content="Elige quién toca qué y el escenario, y comparte la imagen.">
+  <meta property="og:image" content="https://bandadepapel.cloud/assets/monte.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css?v=20261106d">
+  <style>
+    /* a página inteira cabe na tela, sem rolar: o palco ocupa o que sobrar, sempre em 9:16 */
+    html, body { height: 100%; }
+    body { margin: 0; display: flex; flex-direction: column; height: 100vh; height: 100dvh; overflow: hidden; }
+    body > header { position: relative; z-index: 60; width: 100%; box-sizing: border-box; }
+    body > header { flex: none; }
+    .app { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 8px; padding: 4px 8px calc(8px + env(safe-area-inset-bottom)); }
+    .app h1 { flex: none; font-size: clamp(20px, 4.5vw, 30px); margin: 0; text-align: center; }
+    .stage-wrap { flex: none; width: 100%; display: flex; justify-content: center; }
+    #stage { position: relative; flex: none; overflow: hidden; border-radius: 6px; box-shadow: var(--shadow); }
+    #palco { position: absolute; left: 0; width: 100%; top: calc(-100% * 600 / 1320); height: calc(100% * 1920 / 1320); display: block; touch-action: none; cursor: pointer; }
+    /* botões redondos de papel em cima da tela */
+    .fab, #tool button, #roles button, .barra button { font-family: Jost, sans-serif; border: 0; cursor: pointer; }
+    .fab { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 0; background: var(--paper); color: var(--ink);
+      border-radius: 14px; padding: 6px 8px 4px; box-shadow: 0 4px 0 rgba(0,0,0,.3); font-size: 20px; line-height: 1; min-width: 56px; }
+    .fab small, #tool small { font-size: 11px; font-weight: 700; margin-top: 3px; }
+    /* botões do palco acompanham o tamanho do palco (cqw = % da largura do palco) */
+    #stage { container-type: size; }
+    .fab { font-size: min(5.4cqw, 20px) !important; min-width: min(15cqw, 56px) !important; padding: min(1.6cqw, 6px) min(2cqw, 8px) min(1.1cqw, 4px) !important;
+      border-radius: min(3.6cqw, 14px) !important; }
+    .fab small { font-size: min(3cqw, 11px) !important; }
+    #cena { top: 2.6cqw; right: 2.6cqw; } #arranjo { top: 19cqw; right: 2.6cqw; } #dado { top: 35.4cqw; right: 2.6cqw; }
+    #add { top: 2.6cqw; left: 2.6cqw; background: var(--orange); color: #fff; } #addtext { top: 19cqw; left: 2.6cqw; }
+    #hint { font-size: min(3.7cqw, 14px) !important; padding: min(2cqw, 8px) min(3cqw, 12px) !important; }
+    #add.pulse { animation: pulse 1.6s infinite; }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+    #roles { position: absolute; top: 8px; left: 8px; right: 8px; z-index: 6; background: var(--paper); color: var(--ink);
+      padding: 12px; border-radius: 14px; box-shadow: 0 4px 0 rgba(0,0,0,.3); display: flex; flex-direction: column; gap: 6px; }
+    #roles .row { display: flex; gap: 6px; }
+    #roles button { font-family: Jost, sans-serif; background: #fff; color: var(--ink); font-weight: 700; font-size: 15px; border-radius: 10px; padding: 7px 10px; border: 2px solid var(--ink); cursor: pointer; }
+    #roles button:disabled { opacity: .35; }
+    #roles .who { flex: 1; text-align: left; }
+    #roles .addrow { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+    #roles .addrow small { width: 100%; font-weight: 700; color: var(--ink-soft); }
+    #roles .ok { background: var(--orange); color: #fff; border-color: var(--orange); margin-top: 4px; }
+    #tool { position: absolute; transform: translate(-50%, -100%); display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; width: min(280px, 92%);
+      background: var(--paper); padding: 5px; border-radius: 12px; box-shadow: 0 4px 0 rgba(0,0,0,.3); z-index: 4; }
+    #tool button { display: flex; flex-direction: column; align-items: center; background: #fff; color: var(--ink); border-radius: 9px; padding: 4px 0; font-size: 17px; }
+    #tool small { font-size: 10px; }
+    #hint { position: absolute; transform: translate(-50%, -115%); background: var(--yellow); color: var(--ink); font-weight: 700; font-size: 14px;
+      padding: 8px 12px; border-radius: 12px; text-align: center; pointer-events: none; animation: bob 1.4s ease-in-out infinite; white-space: nowrap; }
+    #hint::after { content: ""; position: absolute; left: 50%; bottom: -10px; margin-left: -10px; border: 10px solid transparent; border-bottom: 0; border-top-color: var(--yellow); }
+    @keyframes bob { 0%,100% { margin-top: 0; } 50% { margin-top: -8px; } }
+    #texto { position: absolute; left: 6%; width: 88%; font: 700 20px Jost, sans-serif; padding: 10px 12px; border: 3px solid var(--ink); border-radius: 8px; z-index: 5; }
+    #cenas { position: absolute; top: 8px; left: 8px; right: 74px; z-index: 6; background: var(--paper); padding: 10px; border-radius: 14px;
+      box-shadow: 0 4px 0 rgba(0,0,0,.3); display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    #cenas button { font: 700 13px Jost, sans-serif; background: #fff; color: var(--ink); border: 2px solid var(--ink); border-radius: 10px; padding: 8px 4px; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    #cenas button span { font-size: 24px; }
+    #cenas button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+    #crop { position: fixed; inset: 0; z-index: 50; background: rgba(10,13,28,.96); display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 10px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); text-align: center; color: var(--paper); }
+    #cropcv { width: min(86vw, 46vh, 360px); aspect-ratio: 1; border-radius: 10px; touch-action: none; cursor: grab; }
+    #zoom { width: min(86vw, 46vh, 360px); accent-color: var(--orange); }
+    .crop-acoes { display: flex; gap: 10px; }
+    .crop-acoes button { font: 700 16px Jost, sans-serif; border: 0; border-radius: 99px; padding: 10px 22px; cursor: pointer; }
+    #cropok { background: var(--orange); color: #fff; } #cropno { background: var(--paper); color: var(--ink); }
+    #crop-priv { font-size: 13px; opacity: .85; max-width: 300px; }
+    .so-cabeca { font-weight: 600; font-size: 15px; display: flex; gap: 8px; align-items: center; text-align: left; max-width: min(86vw, 360px); } .so-cabeca input { accent-color: var(--orange); width: 18px; height: 18px; vertical-align: -3px; }
+    #crop-status { color: var(--yellow); font-weight: 700; min-height: 1em; } #cropok:disabled { opacity: .5; }
+    #gravando { position: absolute; inset: auto 12px 12px 12px; z-index: 8; background: var(--paper); color: var(--ink); border-radius: 12px; padding: 10px 14px;
+      font-weight: 700; box-shadow: 0 4px 0 rgba(0,0,0,.3); }
+    #gravando div { height: 8px; background: var(--paper-2); border-radius: 99px; margin-top: 6px; overflow: hidden; }
+    #gravando i { display: block; height: 100%; width: 0; background: var(--orange); }
+    #aviso { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 9; background: var(--yellow); color: var(--ink); font-weight: 700;
+      border-radius: 12px; padding: 10px 14px; text-align: center; box-shadow: 0 4px 0 rgba(0,0,0,.3); }
+    .barra { flex: none; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; }
+    .seg { display: inline-flex; background: var(--night-2); border-radius: 99px; padding: 4px; gap: 4px; }
+    .seg button { font: 700 15px Jost, sans-serif; border: 0; border-radius: 99px; padding: 7px 14px; background: transparent; color: var(--paper); cursor: pointer; }
+    .seg button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+    .acoes { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; align-items: center; }
+    .acoes button { font: 700 15px Jost, sans-serif; border: 0; border-radius: 99px; padding: 10px 16px; box-shadow: var(--shadow); cursor: pointer; }
+    #compartilhar, #v-compartilhar { background: var(--orange); color: #fff; }
+    #baixar, #v-baixar { background: var(--paper); color: var(--ink); }
+    /* celular: cabeçalho só com a marca e o idioma; em tela baixa some o título e a dica do vídeo */
+    @media (max-height: 760px) { .app h1 { display: none; } }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <header class="wrap top">
+    <a class="brand" href="./"><img src="../assets/avatar.png" alt="">Banda de Papel</a>
+    <details class="langs"><summary aria-label="Idioma">🇪🇸</summary><div class="langs-list"><a href="../monte.html" hreflang="pt-BR" lang="pt-BR">🇧🇷 Português</a><a href="../en/band-maker.html" hreflang="en" lang="en">🇺🇸 English</a><a href="../es/band-maker.html" hreflang="es" lang="es" aria-current="true">🇪🇸 Español</a></div></details><input type="checkbox" id="menu" class="menu-toggle" hidden><label for="menu" class="menu-btn" aria-label="Menu">☰</label><nav><a href="band-maker.html" aria-current="page">Arma tu banda</a><a href="kits.html">Kits de papel</a><a href="videos.html">Video a medida</a><a href="support.html">Apoya</a></nav>
+  </header>
+  <main class="app">
+    <h1>Arma tu banda de papel</h1>
+    <div class="barra">
+      <div class="seg" role="tablist">
+        <button id="m-img" type="button" role="tab" aria-pressed="true"></button><button id="m-vid" type="button" role="tab" aria-pressed="false"></button>
+      </div>
+      <div class="acoes" id="acoes-img"><button id="compartilhar" type="button"></button><button id="baixar" type="button"></button></div>
+      <div class="acoes" id="acoes-vid" hidden><button id="v-compartilhar" type="button"></button><button id="v-baixar" type="button"></button></div>
+    </div>
+    <div class="stage-wrap"><div id="stage">
+      <canvas id="palco" width="1080" height="1920" aria-label="Tu banda de papel en el escenario"></canvas>
+      <div id="hint">👆 Toca a alguien para cambiarlo<br>o arrástralo para moverlo</div>
+      <div id="tool" hidden></div>
+      <input id="texto" hidden maxlength="28" placeholder="Escribe aquí" enterkeyhint="done">
+      <button class="fab" id="cena" type="button">🎬<small>Escenario</small></button>
+      <button class="fab" id="arranjo" type="button">🔀<small>Ordenar</small></button>
+      <button class="fab" id="dado" type="button">🎲<small>Sortear</small></button>
+      <div id="gravando" hidden><span id="gravando-txt"></span><div><i id="gravando-bar"></i></div></div>
+      <div id="aviso" hidden></div>
+      <button class="fab" id="addtext" type="button">🔤<small>Texto</small></button>
+      <button class="fab pulse" id="add" type="button">＋<small>Persona</small></button>
+      <div id="roles" hidden></div>
+      <div id="cenas" hidden></div>
+      <div id="crop" hidden>
+        <strong id="crop-title"></strong>
+        <canvas id="cropcv" width="600" height="600"></canvas>
+        <input id="zoom" type="range" min="1" max="5" step="0.01" value="1">
+        <label class="so-cabeca"><input type="checkbox" id="so-cabeca" checked> <span id="so-cabeca-txt"></span></label>
+        <div class="crop-acoes"><button id="cropno" type="button"></button><button id="cropok" type="button"></button></div>
+        <small id="crop-status" aria-live="polite"></small>
+        <small id="crop-priv"></small>
+      </div>
+      <input id="foto" type="file" accept="image/*" hidden>
+    </div></div>
+  </main>
+  <script src="../monte.js?v=20261106f"></script>
+</body>
+</html>

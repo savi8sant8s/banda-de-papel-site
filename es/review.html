@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opina sobre tu video — Banda de Papel</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css?v=20261106d">
+</head>
+<body>
+  <main class="wrap thanks">
+    <div class="paper tilt-r">
+      <h1>¿Cómo quedó tu video?</h1>
+      <p class="lead">Toma un minuto y ayuda mucho a quien está pensando en pedir uno.</p>
+      <form id="avaliacao-form" data-obrigado="reviewed.html">
+        <input type="hidden" name="tipo" value="avaliacao">
+        <input type="hidden" name="idioma" value="ES">
+        <input class="honey" type="text" name="site" tabindex="-1" autocomplete="off">
+
+        <label>Email del pedido <small>El que usaste para hacer el pedido.</small>
+          <input type="email" name="email" required>
+        </label>
+        <label>Nombre que aparece en el sitio <small>Tu nombre o el de tu banda.</small>
+          <input name="nome" maxlength="60" required>
+        </label>
+        <label>Nota
+          <select name="nota" required>
+            <option value="5">★★★★★ Me encantó</option>
+            <option value="4">★★★★ Me gustó</option>
+            <option value="3">★★★ Normal</option>
+            <option value="2">★★ Podría ser mejor</option>
+            <option value="1">★ No me gustó</option>
+          </select>
+        </label>
+        <label>Comentario <small>¿Qué te pareció? ¿Para quién era el video?</small>
+          <textarea name="comentario" maxlength="600" required></textarea>
+        </label>
+        <label class="check"><input type="checkbox" name="mostrar" value="sim" checked> Pueden mostrar mi opinión en el sitio.</label>
+        <p class="form-erro" hidden></p>
+        <div><button class="btn" type="submit">Enviar opinión</button></div>
+        <p class="after recaptcha">Protegido por Google reCAPTCHA (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacidad</a> y <a href="https://policies.google.com/terms" target="_blank" rel="noopener">términos</a>).</p>
+      </form>
+    </div>
+  </main>
+  <script>
+    // El link enviado al cliente puede traer ?email=... para completar el campo
+    const e = new URLSearchParams(location.search).get("email");
+    if (e) document.querySelector("[name=email]").value = e;
+  </script>
+  <script src="../pedido.js?v=20261106d"></script>
+</body>
+</html>

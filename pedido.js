@@ -5,7 +5,7 @@ const RECAPTCHA_SITE = "6LchpP0tAAAAAIgrn3y5whbL6_FhxRPlZ0jLkORb";
 
 // Serve pro formulário de pedido e pro de avaliação: o que tiver data-obrigado.
 const form = document.querySelector("form[data-obrigado]");
-const pt = document.documentElement.lang.startsWith("pt");
+const pt = document.documentElement.lang.startsWith("pt"), es = document.documentElement.lang.startsWith("es");
 
 if (form) {
   const erro = form.querySelector(".form-erro");
@@ -18,7 +18,7 @@ if (form) {
     erro.hidden = true;
     const textoBotao = botao.textContent;
     botao.disabled = true;
-    botao.textContent = pt ? "Enviando..." : "Sending...";
+    botao.textContent = pt || es ? "Enviando..." : "Sending...";
     try {
       const dados = new URLSearchParams(new FormData(form));
       dados.set("recaptcha", await tokenRecaptcha(dados.get("tipo") || "pedido"));
@@ -30,6 +30,7 @@ if (form) {
       botao.textContent = textoBotao;
       erro.textContent = pt
         ? "Não deu pra enviar agora. Tente de novo em alguns minutos."
+        : es ? "No se pudo enviar ahora. Intenta de nuevo en unos minutos."
         : "Couldn't send right now. Please try again in a few minutes.";
       erro.hidden = false;
     }

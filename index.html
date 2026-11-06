@@ -6,6 +6,9 @@
   <title>Banda de Papel</title>
   <meta name="description" content="Kits de papel pra montar, vídeos sob medida e apoio ao canal da Banda de Papel.">
   <link rel="canonical" href="https://bandadepapel.cloud/">
+  <link rel="alternate" hreflang="pt-BR" href="https://bandadepapel.cloud/">
+  <link rel="alternate" hreflang="en" href="https://bandadepapel.cloud/en/">
+  <link rel="alternate" hreflang="es" href="https://bandadepapel.cloud/es/">
   <meta property="og:title" content="Banda de Papel">
   <meta property="og:description" content="Kits de papel pra montar, vídeos sob medida e apoio ao canal da Banda de Papel.">
   <meta property="og:image" content="https://bandadepapel.cloud/assets/banner.jpg">
@@ -15,29 +18,33 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261106d">
 </head>
 <body>
   <header class="wrap top">
     <a class="brand" href="./"><img src="assets/avatar.png" alt="">Banda de Papel</a>
-    <nav><a href="kits.html">Kits de papel</a><a href="videos.html">Vídeo sob medida</a><a href="apoie.html">Apoie</a><a class="lang" href="en/">EN</a></nav>
+    <details class="langs"><summary aria-label="Idioma">🇧🇷</summary><div class="langs-list"><a href="./" hreflang="pt-BR" lang="pt-BR" aria-current="true">🇧🇷 Português</a><a href="en/" hreflang="en" lang="en">🇺🇸 English</a><a href="es/" hreflang="es" lang="es">🇪🇸 Español</a></div></details><input type="checkbox" id="menu" class="menu-toggle" hidden><label for="menu" class="menu-btn" aria-label="Menu">☰</label><nav><a href="monte.html">Monte a sua banda</a><a href="kits.html">Kits de papel</a><a href="videos.html">Vídeo sob medida</a><a href="apoie.html">Apoie</a></nav>
   </header>
   <main>
     <section class="wrap intro">
       <h1>Músicas tocadas por uma banda de papel.</h1>
-      <p class="lead">Escolha o que você procura:</p>
+      
       <div class="paths">
+        <a class="path" href="monte.html">
+          <img src="assets/monte.jpg" alt="" loading="lazy">
+          <span class="path-body"><b>Monte a sua banda</b><span>Grátis, direto no celular.</span><span class="btn">Montar</span></span>
+        </a>
         <a class="path" href="kits.html">
           <img src="assets/kits/forro.jpg" alt="" loading="lazy">
-          <span class="path-body"><b>Kits de papel</b><span>Imprima, recorte e monte uma banda de papel. Tem kit grátis.</span><span class="btn">Ver os kits</span></span>
+          <span class="path-body"><b>Kits de papel</b><span>Imprima e monte. Tem um grátis.</span><span class="btn">Ver kits</span></span>
         </a>
         <a class="path" href="videos.html">
           <img src="assets/banner.jpg" alt="" loading="lazy">
-          <span class="path-body"><b>Vídeo sob medida</b><span>Um vídeo da sua música com a sua banda em papel. Pra lançamento ou presente.</span><span class="btn">Pedir orçamento</span></span>
+          <span class="path-body"><b>Vídeo sob medida</b><span>A sua música com a sua banda.</span><span class="btn">Pedir</span></span>
         </a>
         <a class="path" href="apoie.html">
           <img src="assets/avatar.png" alt="" loading="lazy">
-          <span class="path-body"><b>Apoie o canal</b><span>Gostou dos vídeos? Qualquer valor, por Pix ou Bitcoin.</span><span class="btn">Apoiar</span></span>
+          <span class="path-body"><b>Apoie o canal</b><span>Pix ou Bitcoin.</span><span class="btn">Apoiar</span></span>
         </a>
       </div>
     </section>

@@ -11,7 +11,7 @@
   }
   if (!Array.isArray(lista) || !lista.length) return;
 
-  const pt = document.documentElement.lang.startsWith("pt");
+  const pt = document.documentElement.lang.startsWith("pt"), es = document.documentElement.lang.startsWith("es");
   const grade = secao.querySelector(".reviews");
   for (const a of lista.slice(0, 6)) {
     const nota = Math.min(5, Math.max(1, Number(a.nota) || 5));
@@ -20,7 +20,7 @@
     const estrelas = document.createElement("p");
     estrelas.className = "stars";
     estrelas.textContent = "★".repeat(nota) + "☆".repeat(5 - nota);
-    estrelas.setAttribute("aria-label", pt ? `${nota} de 5` : `${nota} out of 5`);
+    estrelas.setAttribute("aria-label", pt || es ? `${nota} de 5` : `${nota} out of 5`);
     const texto = document.createElement("blockquote");
     texto.textContent = a.comentario;
     const quem = document.createElement("figcaption");

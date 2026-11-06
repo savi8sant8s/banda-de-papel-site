@@ -1,6 +1,6 @@
 // Bolinhas dos carrosséis do celular e o botão de pedido fixo. No computador as grades não rolam e nada disso aparece.
 (() => {
-  const pt = document.documentElement.lang.startsWith("pt");
+  const pt = document.documentElement.lang.startsWith("pt"), es = document.documentElement.lang.startsWith("es");
 
   for (const trilho of document.querySelectorAll(".plans, .reviews")) {
     const dots = document.createElement("div");
@@ -23,7 +23,7 @@
       for (let i = 0; i < n; i++) {
         const b = document.createElement("button");
         b.type = "button";
-        b.setAttribute("aria-label", pt ? `Ir para a parte ${i + 1}` : `Go to part ${i + 1}`);
+        b.setAttribute("aria-label", pt ? `Ir para a parte ${i + 1}` : es ? `Ir a la parte ${i + 1}` : `Go to part ${i + 1}`);
         b.addEventListener("click", () => {
           const max = trilho.scrollWidth - trilho.clientWidth;
           trilho.scrollTo({ left: (max * i) / (n - 1), behavior: "smooth" });
