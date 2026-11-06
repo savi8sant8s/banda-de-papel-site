@@ -1,5 +1,6 @@
 // Mostra as avaliações aprovadas na planilha (coluna Mostrar). Sem nenhuma, a seção fica escondida.
 // Usa PLANILHA_URL do pedido.js, que carrega antes.
+// data-tipo="kit" na seção mostra só as de kit (pacote "Kits de papel"); sem isso, só as de vídeo.
 (async () => {
   const secao = document.getElementById("avaliacoes");
   if (!secao) return;
@@ -9,7 +10,10 @@
   } catch {
     return;
   }
-  if (!Array.isArray(lista) || !lista.length) return;
+  if (!Array.isArray(lista)) return;
+  const deKit = (a) => String(a.pacote || "").toLowerCase().startsWith("kit");
+  lista = lista.filter((a) => (secao.dataset.tipo === "kit" ? deKit(a) : !deKit(a)));
+  if (!lista.length) return;
 
   const pt = document.documentElement.lang.startsWith("pt"), es = document.documentElement.lang.startsWith("es");
   const grade = secao.querySelector(".reviews");

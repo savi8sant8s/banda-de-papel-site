@@ -12,7 +12,7 @@
 <body>
   <main class="wrap thanks">
     <div class="paper tilt-r">
-      <h1>Como ficou o seu vídeo?</h1>
+      <h1 id="av-titulo">Como ficou o seu vídeo?</h1>
       <p class="lead">Leva um minuto e ajuda muito quem está pensando em pedir.</p>
       <form id="avaliacao-form" data-obrigado="avaliado.html">
         <input type="hidden" name="tipo" value="avaliacao">
@@ -34,7 +34,7 @@
             <option value="1">★ Não gostei</option>
           </select>
         </label>
-        <label>Comentário <small>O que achou? Pra quem foi o vídeo?</small>
+        <label>Comentário <small id="av-dica">O que achou? Pra quem foi o vídeo?</small>
           <textarea name="comentario" maxlength="600" required></textarea>
         </label>
         <label class="check"><input type="checkbox" name="mostrar" value="sim" checked> Pode mostrar minha avaliação no site.</label>
@@ -48,6 +48,13 @@
     // O link mandado pro cliente pode vir com ?email=... pra já preencher
     const e = new URLSearchParams(location.search).get("email");
     if (e) document.querySelector("[name=email]").value = e;
+    // Quem comprou kit recebe o link com &kit=1: o texto fala do kit em vez do vídeo
+    if (new URLSearchParams(location.search).has("kit")) {
+      document.title = "Avaliar o kit — Banda de Papel";
+      document.querySelector("#av-titulo").textContent = "Como ficou o seu kit?";
+      document.querySelector("#av-dica").textContent = "O que achou? Montou com quem?";
+      document.querySelector(".lead").textContent = "Leva um minuto e ajuda muito quem está pensando em comprar.";
+    }
   </script>
   <script src="pedido.js?v=20261106d"></script>
 </body>

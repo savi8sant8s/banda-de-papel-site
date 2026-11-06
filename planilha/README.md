@@ -37,6 +37,7 @@ Em `LIMITES`, no começo do `Code.gs`: até 15 pedidos por hora no total e 3 por
 Aba **Avaliações**. Só entra avaliação de e-mail que tenha um pedido com Status **Entregue** na aba Pedidos.
 
 1. Ao entregar o vídeo, mande o link: `https://bandadepapel.cloud/avaliar.html?email=EMAIL_DO_CLIENTE` (em inglês: `/en/review.html?email=...`).
+   Kit de papel: depois de mandar os PDFs, marque o pedido como **Entregue** e mande `https://bandadepapel.cloud/avaliar.html?email=EMAIL_DO_CLIENTE&kit=1`. A avaliação de kit aparece só em kits.html; a de vídeo, só em videos.html (pela coluna Pacote).
 2. A avaliação chega com **Mostrar** desmarcado, e um e-mail avisa.
 3. Marque **Mostrar** pra ela aparecer no site (seção "Quem já pediu", depois do portfólio). Só aparece se o cliente também deixou ("Pode mostrar" = Sim). Desmarcou, some.
 4. O site leva até 5 minutos pra atualizar. Sem nenhuma avaliação aprovada, a seção fica escondida.

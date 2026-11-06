@@ -618,22 +618,45 @@
     return { x0: cx - w * s, x1: cx + w * s, y0: m.y - h * s, y1: m.y + 20, s, cx };
   }
 
+  const TEXT_MAX_W = SW - 140;  // o adesivo nunca passa da largura do palco: quebra em linhas
+  function wrapLines(g, text, maxW) {
+    const out = [];
+    let cur = "";
+    for (const word of text.split(/\s+/).filter(Boolean)) {
+      const tryLine = cur ? `${cur} ${word}` : word;
+      if (g.measureText(tryLine).width <= maxW) { cur = tryLine; continue; }
+      if (cur) out.push(cur);
+      cur = "";
+      let piece = "";  // palavra sozinha maior que a linha: quebra por letra
+      for (const ch of word) {
+        if (g.measureText(piece + ch).width > maxW && piece) { out.push(piece); piece = ch; } else piece += ch;
+      }
+      cur = piece;
+    }
+    if (cur) out.push(cur);
+    return out.length ? out : [text];
+  }
   function stickerBox(g, t) {
     const label = t.text || (t.main ? TX.namePh : TX.textPh), fs = t.text ? t.size : t.size * 0.48;
     g.font = `800 ${fs}px Jost, Futura, sans-serif`;
-    const w = g.measureText(label).width + fs * 1.4, h = t.size * 1.5;
-    return { w, h, label };
+    const pad = fs * 1.4, lines = wrapLines(g, label, TEXT_MAX_W - pad), lh = fs * 1.12;
+    const w = Math.max(...lines.map(l => g.measureText(l).width)) + pad, h = t.size * 1.5 + (lines.length - 1) * lh;
+    return { w, h, label, lines, lh };
+  }
+  function drawLines(g, lines, lh) {
+    lines.forEach((l, k) => g.fillText(l, 0, 4 + (k - (lines.length - 1) / 2) * lh));
   }
   function drawSticker(g, t, editing) {
-    const { w, h, label } = stickerBox(g, t);
+    const { w, h, lines, lh } = stickerBox(g, t);
     if (!t.text && !editing) return;
+    t.x = Math.min(Math.max(t.x, w / 2 + 20), SW - w / 2 - 20);  // texto que cresceu não sai pela lateral
+    t.y = Math.min(Math.max(t.y, VY + h / 2 + 20), SH - h / 2 - 20);  // nem pelo topo da parte visível
     g.save(); g.translate(t.x, t.y); g.rotate(t.rot * Math.PI / 180);
     if (!t.text) { g.fillStyle = "rgba(20,24,44,.55)"; g.fillRect(-w / 2, -h / 2, w, h); g.setLineDash([18, 12]); g.strokeStyle = "rgba(241,234,220,.85)"; g.lineWidth = 5; g.strokeRect(-w / 2, -h / 2, w, h);
-      g.fillStyle = "rgba(241,234,220,.85)"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(label, 0, 4); g.restore(); return; }
-    g.font = `800 ${t.size}px Jost, Futura, sans-serif`;
+      g.fillStyle = "rgba(241,234,220,.85)"; g.textAlign = "center"; g.textBaseline = "middle"; drawLines(g, lines, lh); g.restore(); return; }
     g.fillStyle = "rgba(0,0,0,.3)"; g.fillRect(-w / 2 + 10, -h / 2 + 14, w, h);
     g.fillStyle = css(PAPER); g.fillRect(-w / 2, -h / 2, w, h); g.fillStyle = css(t.color); g.fillRect(-w / 2, -h / 2, w, 10);
-    g.fillStyle = css(DARK); g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(t.text, 0, 4);
+    g.fillStyle = css(DARK); g.textAlign = "center"; g.textBaseline = "middle"; drawLines(g, lines, lh);
     g.restore();
   }
 
@@ -753,7 +776,7 @@
       tool.append(btn("✏️", TX.tWrite, editText), btn("🎨", TX.tColor, () => { t.color = next(TEXT_COLORS, t.color); }),
         btn("↻", TX.tRotate, () => { t.rot = t.rot > 4 ? -6 : t.rot + 3; }), btn("🔠", TX.tSize, () => { t.size = t.size >= 110 ? 56 : t.size + 18; }));
       if (!t.main) tool.append(btn("🗑️", TX.tRemove, () => { st.texts.splice(st.sel.i, 1); st.sel = null; }));
-      pos(t.x * kk, (t.y + t.size - VY) * kk + tool.offsetHeight + 10);
+      pos(t.x * kk, (t.y + stickerBox(g, t).h / 2 - VY) * kk + tool.offsetHeight + 10);
     }
   }
   function pos(x, y) {
@@ -763,9 +786,9 @@
   }
   function editText() {
     const t = st.texts[st.sel.i]; input.value = t.text; input.hidden = false;
-    input.style.top = `${Math.max(0, t.y - t.size - VY) * k()}px`; input.focus(); input.select();
+    input.style.top = `${Math.max(0, t.y - stickerBox(g, t).h / 2 - VY) * k()}px`; input.focus(); input.select();
   }
-  input.oninput = () => { if (st.sel && st.sel.type === "t") { st.texts[st.sel.i].text = input.value.slice(0, 28); draw(); } };
+  input.oninput = () => { if (st.sel && st.sel.type === "t") { st.texts[st.sel.i].text = input.value.slice(0, 40); draw(); } };
   input.onblur = () => { input.hidden = true; };
   input.onkeydown = e => { if (e.key === "Enter") input.blur(); };
 
