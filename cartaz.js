@@ -269,8 +269,8 @@
       ctx.beginPath(); ctx.arc(46, y, 36, -Math.PI / 2 - .3, Math.PI / 2 - .9, true); ctx.strokeStyle = '#a3a3ad'; ctx.lineWidth = 9; ctx.stroke();
     }
     const { titulo } = cabecalho(nome);
-    ctx.font = '48px Caveat'; esq('Nome: ' + (nome || '________'), 200, 160, azul);
-    ctx.textAlign = 'right'; ctx.fillText(dataCurta.toLowerCase(), W - 60, 160);
+    ctx.font = '48px Caveat'; if (nome) esq('Nome: ' + nome, 200, 160, azul);
+    ctx.textAlign = 'right'; ctx.fillStyle = azul; ctx.fillText(dataCurta.toLowerCase(), W - 60, 160);
     const tt = titulo.charAt(0) + titulo.slice(1).toLowerCase();
     ctx.font = `700 ${caber(tt, 'Caveat', 112, 820)}px Caveat`; esq(tt, 200, 330, azul);
     const wt = ctx.measureText(tt).width;
@@ -317,13 +317,12 @@
 
   const ESTILOS = { lambe, lineup, setlist, ingresso, k7, caderno, xerox };
 
-  const EXEMPLO = ['The Strokes', 'Pitty', 'Supercombo', 'Arctic Monkeys', 'Os Mutantes', 'Fresno', 'Tim Maia'];
   const SUGESTOES = ['Legião Urbana', 'Charlie Brown Jr.', 'NX Zero', 'CPM 22', 'Fresno', 'Pitty', 'Los Hermanos', 'Skank', 'Engenheiros do Hawaii', 'Titãs', 'Paralamas do Sucesso', 'Raul Seixas', 'Cássia Eller', 'Tim Maia', 'Marisa Monte', 'Djavan', 'Belchior', 'Supercombo', 'Scalene', 'Fresno', 'Jão', 'Tim Bernardes', 'Linkin Park', 'My Chemical Romance', 'Paramore', 'Evanescence', 'Green Day', 'Blink-182', 'Arctic Monkeys', 'The Strokes', 'Red Hot Chili Peppers', 'Queen', 'Nirvana', 'Radiohead', 'Coldplay', 'Twenty One Pilots', 'Bruno Mars', 'Avril Lavigne', 'Guns N\' Roses', 'System of a Down'].filter((s, i, a) => a.indexOf(s) === i).sort(() => Math.random() - .5);
   const $nova = document.getElementById('nova'), $lista = document.getElementById('lista'), $sug = document.getElementById('sugestoes');
   const igual = (a, b) => a.toLocaleLowerCase('pt-BR') === b.toLocaleLowerCase('pt-BR');
-  let bandas = (() => { try { const v = JSON.parse(localStorage.getItem('cartaz.bandas')); if (Array.isArray(v) && v.length) return v.filter(s => typeof s === 'string').slice(0, 9); } catch (e) {} return EXEMPLO.slice(); })();
+  let bandas = [];
   let vez = 0;
-  function mudou() { try { localStorage.setItem('cartaz.bandas', JSON.stringify(bandas)); } catch (e) {} lista(); desenhar(); }
+  function mudou() { lista(); desenhar(); }
   function adicionar(txt) {
     txt.split(/[\n,;]+/).map(s => s.trim().slice(0, 40)).filter(Boolean).forEach(s => { if (bandas.length < 9 && !bandas.some(b => igual(b, s))) bandas.push(s); });
     mudou();
