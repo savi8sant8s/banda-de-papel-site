@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cartaz de Papel — Banda de Papel</title>
+  <meta name="description" content="Monte o cartaz das suas bandas em papel recortado e poste no story.">
+  <link rel="canonical" href="https://bandadepapel.cloud/cartaz">
+  <meta property="og:title" content="Cartaz de Papel">
+  <meta property="og:description" content="Suas favoritas, o que você descobriu no ano, o que tocava aos 15: monte o cartaz e poste no story.">
+  <meta property="og:image" content="https://bandadepapel.cloud/assets/cartaz.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Anton&family=Bebas+Neue&family=Rubik+Mono+One&family=Special+Elite&family=Permanent+Marker&family=Abril+Fatface&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261106d">
+  <style>
+    .quarto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 32px; align-items: start; padding-bottom: 40px; }
+    .quarto h1 { margin: 8px 0 4px; font-size: clamp(30px, 6vw, 46px); line-height: 1.1; }
+    .quarto .lead { margin: 0 0 20px; color: var(--paper); opacity: .9; }
+    .campo { display: block; margin-bottom: 16px; }
+    .campo span { display: block; font-weight: 600; margin-bottom: 6px; }
+    .campo small { font-weight: 400; opacity: .7; }
+    .campo input {
+      width: 100%; font: inherit; font-size: 17px; color: var(--ink); background: var(--paper);
+      border: 0; border-radius: var(--radius); padding: 10px 12px; box-shadow: var(--shadow);
+    }
+    .add { display: flex; gap: 8px; }
+    .add input { flex: 1; min-width: 0; font: inherit; font-size: 17px; color: var(--ink); background: var(--paper); border: 0; border-radius: var(--radius); padding: 10px 12px; box-shadow: var(--shadow); }
+    .add button { flex: 0 0 52px; border: 0; border-radius: var(--radius); background: var(--orange); color: #fff; font-size: 30px; font-weight: 700; line-height: 1; cursor: pointer; box-shadow: var(--shadow); }
+    .lista { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 6px; }
+    .lista li { display: flex; align-items: center; gap: 4px; background: var(--paper); color: var(--ink); border-radius: var(--radius); padding: 2px 2px 2px 12px; box-shadow: var(--shadow); }
+    .lista .pos { flex: 0 0 26px; font-weight: 700; opacity: .55; }
+    .lista li:first-child .pos { color: var(--orange); opacity: 1; }
+    .lista .nome { flex: 1; min-width: 0; font-size: 17px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .lista button { flex: 0 0 44px; height: 44px; border: 0; background: transparent; font-size: 22px; color: var(--ink); cursor: pointer; border-radius: 8px; }
+    .lista button:disabled { opacity: .15; cursor: default; }
+    .sugestoes { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .sugestoes button { font: inherit; font-size: 14px; padding: 7px 12px; border-radius: 99px; border: 0; background: var(--night-2); color: var(--paper); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.35); cursor: pointer; }
+    .sugestoes .outras { box-shadow: none; text-decoration: underline; background: transparent; }
+    .estilos { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .estilos button, .acoes button {
+      font: inherit; font-weight: 700; font-size: 16px; cursor: pointer; border: 0; border-radius: 99px;
+      padding: 8px 16px; background: var(--night-2); color: var(--paper); box-shadow: inset 0 0 0 2px var(--paper);
+    }
+    .temas { margin-bottom: 0; }
+    .temas button { font-size: 15px; padding: 7px 14px; }
+    .estilos button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+    .acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .acoes .principal { background: var(--orange); color: #fff; box-shadow: var(--shadow); }
+    .acoes .principal:hover { background: var(--orange-dark); }
+    .previa { position: sticky; top: 12px; }
+    .previa canvas { width: 100%; height: auto; aspect-ratio: 9 / 16; display: block; border-radius: 6px; box-shadow: var(--shadow); background: var(--night-2); }
+    .dica { font-size: 15px; opacity: .8; margin-top: 12px; }
+    @media (max-width: 760px) {
+      /* no celular a prévia vem primeiro, pequena, e o formulário logo abaixo */
+      .quarto { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+      .quarto > section > * { min-width: 0; }
+      .quarto > section { display: contents; }
+      .quarto h1, .quarto .lead { order: -2; }
+      .campo, .estilos, .acoes, .dica { margin-top: 0; margin-bottom: 0; }
+      .quarto h1 { text-align: center; margin: 0; }
+      .quarto .lead { text-align: center; font-size: 16px; margin-bottom: 14px; }
+      .previa { order: -1; position: static; width: min(58vw, 260px); margin: 0 auto; }
+      .acoes { justify-content: center; }
+      /* temas e capas numa fileira que rola de lado */
+      .estilos { flex-wrap: nowrap; overflow-x: auto; margin: 0 -16px; padding: 4px 16px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+      .estilos::-webkit-scrollbar { display: none; }
+      .estilos button { flex: 0 0 auto; }
+      .dica { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap top">
+    <a class="brand" href="./"><img src="assets/avatar.png" alt="">Banda de Papel</a>
+  </header>
+  <main class="wrap quarto">
+    <section>
+      <h1>Cartaz de Papel</h1>
+      <p class="lead"><span id="pergunta">As bandas que você levaria pra uma ilha deserta.</span> Monte o cartaz das suas bandas e poste no story.</p>
+      <div class="campo"><span>Tema</span>
+        <div class="estilos temas" role="group" aria-label="Tema do cartaz" id="temas"></div>
+      </div>
+      <div class="campo"><span>Bandas <small>(até 9 · a primeira é a atração principal)</small></span>
+        <form class="add" id="add" autocomplete="off">
+          <input id="nova" enterkeyhint="enter" autocapitalize="words" autocorrect="off" spellcheck="false" maxlength="40" placeholder="Digite uma banda" aria-label="Nova banda">
+          <button type="submit" aria-label="Adicionar">+</button>
+        </form>
+        <ol class="lista" id="lista"></ol>
+        <div class="sugestoes" id="sugestoes" aria-label="Sugestões"></div>
+      </div>
+      <div class="campo"><span>Capa</span>
+        <div class="estilos" role="group" aria-label="Capa do cartaz">
+          <button type="button" data-estilo="lambe" aria-pressed="true">Lambe-lambe</button>
+          <button type="button" data-estilo="lineup" aria-pressed="false">Line-up</button>
+          <button type="button" data-estilo="setlist" aria-pressed="false">Setlist</button>
+          <button type="button" data-estilo="ingresso" aria-pressed="false">Ingresso</button>
+          <button type="button" data-estilo="k7" aria-pressed="false">Fita K7</button>
+          <button type="button" data-estilo="caderno" aria-pressed="false">Caderno</button>
+          <button type="button" data-estilo="xerox" aria-pressed="false">Xerox</button>
+        </div>
+      </div>
+      <label class="campo"><span>Seu nome <small>(opcional)</small></span><input id="nome" maxlength="24" autocomplete="given-name" placeholder="Ana"></label>
+      <div class="acoes">
+        <button type="button" class="principal" id="compartilhar">Postar no story</button>
+        <button type="button" id="baixar">Baixar imagem</button>
+        <button type="button" id="embaralhar">Embaralhar papéis</button>
+      </div>
+      <p class="dica">Poste e marque <a href="https://www.instagram.com/abandadepapel/" target="_blank" rel="noopener">@abandadepapel</a>: os melhores cartazes a gente reposta.</p>
+    </section>
+    <aside class="previa"><canvas id="cartaz" width="1080" height="1920" aria-label="Prévia do cartaz"></canvas></aside>
+  </main>
+  <footer class="wrap">
+    <div class="social">
+      <a href="https://www.instagram.com/abandadepapel/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.youtube.com/@abandadepapel" target="_blank" rel="noopener">YouTube</a>
+    </div>
+    <p>Banda de Papel — tudo desenhado por código, nas horas vagas.</p>
+  </footer>
+  <script src="cartaz.js?v=20261122b"></script>
+</body>
+</html>
